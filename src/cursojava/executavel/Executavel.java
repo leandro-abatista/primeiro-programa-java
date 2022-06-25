@@ -19,7 +19,7 @@ public class Executavel {
 		
 		List<Aluno> alunos = new ArrayList<>();
 		
-		for(int quantidade = 0; quantidade <= 1; quantidade++) {
+		for(int quantidade = 1; quantidade <= 3; quantidade++) {
 		
 			String nome = JOptionPane.showInputDialog("Qual o nome do Aluno? ");
 	//		String idade = JOptionPane.showInputDialog("Qual a idade do Aluno? ");
@@ -81,13 +81,31 @@ public class Executavel {
 			
 			/*Procurando um aluno e imprimindo a média*/
 			if(aluno.getNome().equalsIgnoreCase("José")) {
-			
+				
+				alunos.remove(aluno);/*REMOVE UM ALUNO DA LISTA, NO CASO O ALUNO JOSÉ*/
+				break;//parar o código assim que encontrar o aluno 'josé'
+			} else {
 				System.out.println(aluno.toString());
 				System.out.println("Média :: " + String.format("%.2f", aluno.getMediaNota()));
 				System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
 				System.out.println("----------------------------------------------------------------------------------");
-				
-				break;//parar o código assim que encontrar o aluno 'josé'
+			}
+		}
+		
+		/*ESSE FOR PERCORRE OS ALUNO QUE SOBRARAM NA LISTA*/
+		System.out.println();
+		System.out.println("Alunos que sobraram na lista ::: ");
+		for (Aluno aluno : alunos) {
+			System.out.println("-----------------------------------------------------------------");
+			System.out.println("NOME DO ALUNO :: " + aluno.getNome());
+			System.out.println("-----------------------------------------------------------------");
+			System.out.println("Suas matérias são :::");
+			System.out.println();
+			
+			for(Disciplina disciplina : aluno.getDisciplinas()) {
+				System.out.println("--------------------------------------------------------------");
+				System.out.println("Nome :: " + disciplina.getNomeDisciplina() + " - Nota :: " + disciplina.getNota());
+				System.out.println("================================================================================");
 			}
 		}
 		
