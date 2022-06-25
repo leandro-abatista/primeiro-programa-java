@@ -73,11 +73,17 @@ public class Executavel {
 				}
 			}
 		
+			alunos.add(aluno);//Adiciona os dados do aluno na lista
 		}
 		
-		System.out.println(aluno.toString());
-		System.out.println("Média :: " + String.format("%.2f", aluno.getMediaNota()));
-		System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+		/*Percorre a lista de alunos | Para cada aluno iimprime os dados do aluno*/
+		for(Aluno aluno : alunos) {
+			System.out.println(aluno.toString());
+			System.out.println("Média :: " + String.format("%.2f", aluno.getMediaNota()));
+			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+			System.out.println("----------------------------------------------------------------------------------");
 
+		}
+		
 	}
 }

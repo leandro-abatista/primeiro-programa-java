@@ -154,7 +154,7 @@ public class Aluno {
 		return somaNotas / disciplinas.size();//size retorna a quantidade de objetos na disciplina - assim fica dinâmico
 	} 
 	
-	/*MÉTODO QUE REORNA TRUE APROVADO E FALSE PARA REPROVADO*/
+	/*MÉTODO QUE RETORNA TRUE APROVADO E FALSE PARA REPROVADO*/
 	public boolean getAlunoAprovado() {
 		double media = this.getMediaNota();
 		if (media >= 70) {
