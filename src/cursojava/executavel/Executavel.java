@@ -78,11 +78,17 @@ public class Executavel {
 		
 		/*Percorre a lista de alunos | Para cada aluno iimprime os dados do aluno*/
 		for(Aluno aluno : alunos) {
-			System.out.println(aluno.toString());
-			System.out.println("Média :: " + String.format("%.2f", aluno.getMediaNota()));
-			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
-			System.out.println("----------------------------------------------------------------------------------");
-
+			
+			/*Procurando um aluno e imprimindo a média*/
+			if(aluno.getNome().equalsIgnoreCase("José")) {
+			
+				System.out.println(aluno.toString());
+				System.out.println("Média :: " + String.format("%.2f", aluno.getMediaNota()));
+				System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+				System.out.println("----------------------------------------------------------------------------------");
+				
+				break;//parar o código assim que encontrar o aluno 'josé'
+			}
 		}
 		
 	}
