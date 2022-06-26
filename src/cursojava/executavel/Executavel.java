@@ -19,7 +19,7 @@ public class Executavel {
 		
 		List<Aluno> alunos = new ArrayList<>();
 		
-		for(int quantidade = 1; quantidade <= 3; quantidade++) {
+		for(int quantidade = 1; quantidade <= 2; quantidade++) {
 		
 			String nome = JOptionPane.showInputDialog("Qual o nome do Aluno? ");
 	//		String idade = JOptionPane.showInputDialog("Qual a idade do Aluno? ");
@@ -76,38 +76,51 @@ public class Executavel {
 			alunos.add(aluno);//Adiciona os dados do aluno na lista
 		}
 		
-		/*Percorre a lista de alunos | Para cada aluno iimprime os dados do aluno*/
-		for(Aluno aluno : alunos) {
-			
-			/*Procurando um aluno e imprimindo a média*/
-			if(aluno.getNome().equalsIgnoreCase("José")) {
+//		/*Percorre a lista de alunos | Para cada aluno iimprime os dados do aluno*/
+//		for(Aluno aluno : alunos) {
+//			
+//			/*Procurando um aluno e imprimindo a média*/
+//			if(aluno.getNome().equalsIgnoreCase("José")) {
+//				
+//				alunos.remove(aluno);/*REMOVE UM ALUNO DA LISTA, NO CASO O ALUNO JOSÉ*/
+//				break;//parar o código assim que encontrar o aluno 'josé'
+//			} else {
+//				System.out.println(aluno.toString());
+//				System.out.println("Média :: " + String.format("%.2f", aluno.getMediaNota()));
+//				System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+//				System.out.println("----------------------------------------------------------------------------------");
+//			}
+		
+			//PERCORRENDO A LISTA PELA POSIÇÃO
+			//PARA CADA POSIÇÃO DO TAMANHO DA LISTA, RECUPERA O OBJETO ALUNO
+			for (int pos = 0; pos < alunos.size(); pos++) {
+				Aluno aluno = alunos.get(pos);
+				System.out.println("Aluno = " + aluno.getNome());
+				System.out.println("Média do Aluno = " + aluno.getMediaNota());
+				System.out.println("Resultado = " + aluno.getAlunoAprovado2());
 				
-				alunos.remove(aluno);/*REMOVE UM ALUNO DA LISTA, NO CASO O ALUNO JOSÉ*/
-				break;//parar o código assim que encontrar o aluno 'josé'
-			} else {
-				System.out.println(aluno.toString());
-				System.out.println("Média :: " + String.format("%.2f", aluno.getMediaNota()));
-				System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
-				System.out.println("----------------------------------------------------------------------------------");
+				for (Disciplina disc : aluno.getDisciplinas()) {
+					System.out.println("Disciplina :: " + disc.getNomeDisciplina() + " - Nota :: " + disc.getNota());
+				}
 			}
 		}
 		
-		/*ESSE FOR PERCORRE OS ALUNO QUE SOBRARAM NA LISTA*/
-		System.out.println();
-		System.out.println("Alunos que sobraram na lista ::: ");
-		for (Aluno aluno : alunos) {
-			System.out.println("-----------------------------------------------------------------");
-			System.out.println("NOME DO ALUNO :: " + aluno.getNome());
-			System.out.println("-----------------------------------------------------------------");
-			System.out.println("Suas matérias são :::");
-			System.out.println();
-			
-			for(Disciplina disciplina : aluno.getDisciplinas()) {
-				System.out.println("--------------------------------------------------------------");
-				System.out.println("Nome :: " + disciplina.getNomeDisciplina() + " - Nota :: " + disciplina.getNota());
-				System.out.println("================================================================================");
-			}
-		}
-		
-	}
+//		/*ESSE FOR PERCORRE OS ALUNO QUE SOBRARAM NA LISTA*/
+//		System.out.println();
+//		System.out.println("Alunos que sobraram na lista ::: ");
+//		for (Aluno aluno : alunos) {
+//			System.out.println("-----------------------------------------------------------------");
+//			System.out.println("NOME DO ALUNO :: " + aluno.getNome());
+//			System.out.println("-----------------------------------------------------------------");
+//			System.out.println("Suas matérias são :::");
+//			System.out.println();
+//			
+//			for(Disciplina disciplina : aluno.getDisciplinas()) {
+//				System.out.println("--------------------------------------------------------------");
+//				System.out.println("Nome :: " + disciplina.getNomeDisciplina() + " - Nota :: " + disciplina.getNota());
+//				System.out.println("================================================================================");
+//			}
+//		}
+//		
+//	}
 }
