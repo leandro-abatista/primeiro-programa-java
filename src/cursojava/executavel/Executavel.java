@@ -99,7 +99,12 @@ public class Executavel {
 				System.out.println("Média do Aluno = " + aluno.getMediaNota());
 				System.out.println("Resultado = " + aluno.getAlunoAprovado2());
 				
-				for (Disciplina disc : aluno.getDisciplinas()) {
+//				for (Disciplina disc : aluno.getDisciplinas()) {
+//					System.out.println("Disciplina :: " + disc.getNomeDisciplina() + " - Nota :: " + disc.getNota());
+//				}
+				
+				for(int posd = 0; posd < aluno.getDisciplinas().size(); posd++) {
+					Disciplina disc = aluno.getDisciplinas().get(posd);
 					System.out.println("Disciplina :: " + disc.getNomeDisciplina() + " - Nota :: " + disc.getNota());
 				}
 			}
