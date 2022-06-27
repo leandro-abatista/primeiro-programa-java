@@ -9,6 +9,7 @@ import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 import cursojava.classes.Aluno;
 import cursojava.classes.Disciplina;
+import cursojava.constantes.StatusAluno;
 
 /**
  * CLASSE EXECUTÁVEL
@@ -19,9 +20,13 @@ public class Executavel {
 
 	public static void main(String[] args) {
 		
-		List<Aluno> alunos = new ArrayList<>();
+		List<Aluno> alunos = new ArrayList<>();//lista para adicionar os alunos
 		
-		for(int quantidade = 1; quantidade <= 2; quantidade++) {
+		List<Aluno> alunosAprovados = new ArrayList<>();
+		List<Aluno> alunosRecuperacao = new ArrayList<>();
+		List<Aluno> alunosreprovados = new ArrayList<>();
+		
+		for(int quantidade = 1; quantidade <= 5; quantidade++) {
 		
 			String nome = JOptionPane.showInputDialog("Qual o nome do Aluno? ");
 	//		String idade = JOptionPane.showInputDialog("Qual a idade do Aluno? ");
@@ -48,7 +53,7 @@ public class Executavel {
 	//		aluno.setNomeEscola(nomeEsc.toUpperCase());
 			
 	
-			for (int i = 1; i <= 1; i++) {
+			for (int i = 1; i <= 2; i++) {
 				String disciplina = JOptionPane.showInputDialog("Disciplina "+ i +" ? " );
 				String nota = JOptionPane.showInputDialog("Nota ? ");
 				Disciplina disc = new Disciplina();
@@ -78,6 +83,45 @@ public class Executavel {
 			alunos.add(aluno);//Adiciona os dados do aluno na lista
 		}
 		
+		//CRIANDO A LISTA DE APROVADO, REPROVADOS E EM RECUPERAÇÃO
+		for (Aluno aluno : alunos) {/*SEPAREI EM LISTAS*/
+			if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.APROVADO)) {
+				alunosAprovados.add(aluno);
+			} else if(aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+				alunosRecuperacao.add(aluno);
+			} else {
+				alunosreprovados.add(aluno);/*última opção de reprovação*/
+			}
+		}
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("-------------------Lista dos aprovados-----------------------------------");
+		for (Aluno aluno : alunosAprovados) {
+			System.out.println("Nome do aluno :: " + aluno.getNome());
+			System.out.println("Média do aluno :: " + aluno.getMediaNota());
+			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+		}
+		
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("-------------------Lista dos reprovados-----------------------------------");
+		for (Aluno aluno : alunosreprovados) {
+			System.out.println("Nome do aluno :: " + aluno.getNome());
+			System.out.println("Média do aluno :: " + aluno.getMediaNota());
+			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+		}
+		
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("-------------------Lista em recuperação----------------------------------");
+		for (Aluno aluno : alunosRecuperacao) {
+			System.out.println("Nome do aluno :: " + aluno.getNome());
+			System.out.println("Média do aluno :: " + aluno.getMediaNota());
+			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+		}
+		
+		
+		
 //		/*Percorre a lista de alunos | Para cada aluno iimprime os dados do aluno*/
 //		for(Aluno aluno : alunos) {
 //			
@@ -95,41 +139,41 @@ public class Executavel {
 		
 			//PERCORRENDO A LISTA PELA POSIÇÃO
 			//PARA CADA POSIÇÃO DO TAMANHO DA LISTA, RECUPERA O OBJETO ALUNO
-			for (int pos = 0; pos < alunos.size(); pos++) {
-				
-				Aluno aluno = alunos.get(pos);
-				
-				//SUBSTITUINDO UM OBJETO POR OUTRO NA LISTA
-				if(aluno.getNome().equalsIgnoreCase("alex")) {
-					
-					Aluno trocar = new Aluno();
-					trocar.setNome("Aluno trocado");
-					
-					Disciplina disciplina = new Disciplina();
-					disciplina.setNomeDisciplina("Matématica");
-					disciplina.setNota(96);
-					
-					trocar.getDisciplinas().add(disciplina);
-					
-					//subtitui através do código abaixo
-					alunos.set(pos, trocar);
-					aluno = alunos.get(pos);
-				}
-				
-				System.out.println("Aluno = " + aluno.getNome());
-				System.out.println("Média do Aluno = " + aluno.getMediaNota());
-				System.out.println("Resultado = " + aluno.getAlunoAprovado2());
+//			for (int pos = 0; pos < alunos.size(); pos++) {
+//				
+//				Aluno aluno = alunos.get(pos);
+//				
+//				//SUBSTITUINDO UM OBJETO POR OUTRO NA LISTA
+//				if(aluno.getNome().equalsIgnoreCase("alex")) {
+//					
+//					Aluno trocar = new Aluno();
+//					trocar.setNome("Aluno trocado");
+//					
+//					Disciplina disciplina = new Disciplina();
+//					disciplina.setNomeDisciplina("Matématica");
+//					disciplina.setNota(96);
+//					
+//					trocar.getDisciplinas().add(disciplina);
+//					
+//					//subtitui através do código abaixo
+//					alunos.set(pos, trocar);
+//					aluno = alunos.get(pos);
+//				}
+//				
+//				System.out.println("Aluno = " + aluno.getNome());
+//				System.out.println("Média do Aluno = " + aluno.getMediaNota());
+//				System.out.println("Resultado = " + aluno.getAlunoAprovado2());
 				
 //				for (Disciplina disc : aluno.getDisciplinas()) {
 //					System.out.println("Disciplina :: " + disc.getNomeDisciplina() + " - Nota :: " + disc.getNota());
 //				}
 				
-				for(int posd = 0; posd < aluno.getDisciplinas().size(); posd++) {
-					Disciplina disc = aluno.getDisciplinas().get(posd);
-					System.out.println("Disciplina :: " + disc.getNomeDisciplina() + " - Nota :: " + disc.getNota());
-				}
-			}
-		}
+//				for(int posd = 0; posd < aluno.getDisciplinas().size(); posd++) {
+//					Disciplina disc = aluno.getDisciplinas().get(posd);
+//					System.out.println("Disciplina :: " + disc.getNomeDisciplina() + " - Nota :: " + disc.getNota());
+//				}
+//			}
+//		}
 		
 //		/*ESSE FOR PERCORRE OS ALUNO QUE SOBRARAM NA LISTA*/
 //		System.out.println();
@@ -149,4 +193,5 @@ public class Executavel {
 //		}
 //		
 //	}
+	}
 }
