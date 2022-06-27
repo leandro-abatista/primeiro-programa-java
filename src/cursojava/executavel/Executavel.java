@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 import cursojava.classes.Aluno;
 import cursojava.classes.Disciplina;
 
@@ -46,7 +48,7 @@ public class Executavel {
 	//		aluno.setNomeEscola(nomeEsc.toUpperCase());
 			
 	
-			for (int i = 1; i <= 4; i++) {
+			for (int i = 1; i <= 1; i++) {
 				String disciplina = JOptionPane.showInputDialog("Disciplina "+ i +" ? " );
 				String nota = JOptionPane.showInputDialog("Nota ? ");
 				Disciplina disc = new Disciplina();
@@ -94,7 +96,26 @@ public class Executavel {
 			//PERCORRENDO A LISTA PELA POSIÇÃO
 			//PARA CADA POSIÇÃO DO TAMANHO DA LISTA, RECUPERA O OBJETO ALUNO
 			for (int pos = 0; pos < alunos.size(); pos++) {
+				
 				Aluno aluno = alunos.get(pos);
+				
+				//SUBSTITUINDO UM OBJETO POR OUTRO NA LISTA
+				if(aluno.getNome().equalsIgnoreCase("alex")) {
+					
+					Aluno trocar = new Aluno();
+					trocar.setNome("Aluno trocado");
+					
+					Disciplina disciplina = new Disciplina();
+					disciplina.setNomeDisciplina("Matématica");
+					disciplina.setNota(96);
+					
+					trocar.getDisciplinas().add(disciplina);
+					
+					//subtitui através do código abaixo
+					alunos.set(pos, trocar);
+					aluno = alunos.get(pos);
+				}
+				
 				System.out.println("Aluno = " + aluno.getNome());
 				System.out.println("Média do Aluno = " + aluno.getMediaNota());
 				System.out.println("Resultado = " + aluno.getAlunoAprovado2());
