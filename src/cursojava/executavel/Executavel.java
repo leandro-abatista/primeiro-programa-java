@@ -1,11 +1,11 @@
 package cursojava.executavel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 import cursojava.classes.Aluno;
 import cursojava.classes.Disciplina;
@@ -22,9 +22,15 @@ public class Executavel {
 		
 		List<Aluno> alunos = new ArrayList<>();//lista para adicionar os alunos
 		
-		List<Aluno> alunosAprovados = new ArrayList<>();
-		List<Aluno> alunosRecuperacao = new ArrayList<>();
-		List<Aluno> alunosreprovados = new ArrayList<>();
+		/*chave, valor*/
+		/*É UMA LISTA QUE DENTRO DELA TEMOS UMA CHAVE QUE IDENTIFICA UMA SEQUÊNCIA DE VALORES*/
+		HashMap<String, List<Aluno>> maps = new HashMap<>();
+		
+//		List<Aluno> alunosAprovados = new ArrayList<>();
+//		List<Aluno> alunosRecuperacao = new ArrayList<>();
+//		List<Aluno> alunosreprovados = new ArrayList<>();
+		
+		
 		
 		for(int quantidade = 1; quantidade <= 5; quantidade++) {
 		
@@ -83,42 +89,69 @@ public class Executavel {
 			alunos.add(aluno);//Adiciona os dados do aluno na lista
 		}
 		
+		maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+		
 		//CRIANDO A LISTA DE APROVADO, REPROVADOS E EM RECUPERAÇÃO
 		for (Aluno aluno : alunos) {/*SEPAREI EM LISTAS*/
 			if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.APROVADO)) {
-				alunosAprovados.add(aluno);
+				//alunosAprovados.add(aluno);
+				maps.get(StatusAluno.APROVADO).add(aluno);
 			} else if(aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
-				alunosRecuperacao.add(aluno);
+				//alunosRecuperacao.add(aluno);
+				maps.get(StatusAluno.RECUPERACAO).add(aluno);
 			} else {
-				alunosreprovados.add(aluno);/*última opção de reprovação*/
+				//alunosreprovados.add(aluno);/*última opção de reprovação*/
+				maps.get(StatusAluno.REPROVADO).add(aluno);
 			}
 		}
 		System.out.println();
 		System.out.println("-------------------------------------------------------------------------");
 		System.out.println("-------------------Lista dos aprovados-----------------------------------");
-		for (Aluno aluno : alunosAprovados) {
+		for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
 			System.out.println("Nome do aluno :: " + aluno.getNome());
 			System.out.println("Média do aluno :: " + aluno.getMediaNota());
 			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
-		}
-		
-		System.out.println();
-		System.out.println("-------------------------------------------------------------------------");
-		System.out.println("-------------------Lista dos reprovados-----------------------------------");
-		for (Aluno aluno : alunosreprovados) {
-			System.out.println("Nome do aluno :: " + aluno.getNome());
-			System.out.println("Média do aluno :: " + aluno.getMediaNota());
-			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+			for (Disciplina disc : aluno.getDisciplinas()) {
+				System.out.println("--------------Disciplinas----------------------");
+				System.out.println("Disciplina :: " + disc.getNomeDisciplina());
+				System.out.println("Nota :: " + disc.getNota());
+				System.out.println("-----------------------------------------------");
+			}
 		}
 		
 		System.out.println();
 		System.out.println("-------------------------------------------------------------------------");
 		System.out.println("-------------------Lista em recuperação----------------------------------");
-		for (Aluno aluno : alunosRecuperacao) {
+		for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
 			System.out.println("Nome do aluno :: " + aluno.getNome());
 			System.out.println("Média do aluno :: " + aluno.getMediaNota());
 			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+			for (Disciplina disc : aluno.getDisciplinas()) {
+				System.out.println("--------------Disciplinas----------------------");
+				System.out.println("Disciplina :: " + disc.getNomeDisciplina());
+				System.out.println("Nota :: " + disc.getNota());
+				System.out.println("-----------------------------------------------");
+			}
 		}
+		
+		System.out.println();
+		System.out.println("-------------------------------------------------------------------------");
+		System.out.println("-------------------Lista dos reprovados-----------------------------------");
+		for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
+			System.out.println("Nome do aluno :: " + aluno.getNome());
+			System.out.println("Média do aluno :: " + aluno.getMediaNota());
+			System.out.println("Resultado :: " + aluno.getAlunoAprovado2());
+			for (Disciplina disc : aluno.getDisciplinas()) {
+				System.out.println("--------------Disciplina----------------------");
+				System.out.println("Disciplina :: " + disc.getNomeDisciplina());
+				System.out.println("Nota :: " + disc.getNota());
+				System.out.println("-----------------------------------------------");
+			}
+		}
+		
+		
 		
 		
 		
