@@ -24,5 +24,10 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 	
+	public double imposto(double valorImposto) {
+		double valorImpos = 0.0;
+		valorImpos = (this.valor * valorImposto) / 100;
+		return this.valor += valorImpos;
+	}
 	
 }
