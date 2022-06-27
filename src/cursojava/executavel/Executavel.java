@@ -20,6 +20,11 @@ public class Executavel {
 
 	public static void main(String[] args) {
 		
+		String login = JOptionPane.showInputDialog("Informe o Login");
+		String senha = JOptionPane.showInputDialog("Informe o Senha");
+		
+		if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+		
 		List<Aluno> alunos = new ArrayList<>();//lista para adicionar os alunos
 		
 		/*chave, valor*/
@@ -226,5 +231,6 @@ public class Executavel {
 //		}
 //		
 //	}
+		}
 	}
 }
